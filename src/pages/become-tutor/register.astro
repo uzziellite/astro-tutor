@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/layout.astro"
+import TutorForm from "@components/TutorForm.svelte"
+---
+
+<Layout title="Register as a tutor" description="Tutor registration">
+<div class="px-4 py-24 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+  <div class="mx-auto">
+    <h1 class="text-4xl font-bold text-center sm:text-3xl">
+    	Register as a tutor
+    </h1>
+
+    <p class="max-w-md mx-auto mt-4 text-center text-gray-500 dark:text-stone-300">
+      We are looking for professional teachers who are recognized by the teachers service commission or any other accredited body
+    </p>
+
+    <TutorForm client:load />
+  </div>
+</div>
+
+</Layout>

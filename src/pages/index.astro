@@ -1,0 +1,355 @@
+---
+import Layout from "@layouts/layout.astro"
+---
+
+<Layout title="Welcome" description="Coming soon">
+<section class="relative h-[33rem]">
+  <img
+    class="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-25 sm:opacity-100"
+    src="/images/student.avif"
+    alt="Couple on a bed with a dog"
+  />
+
+  <div class="hidden sm:block sm:inset-0 sm:absolute sm:bg-gradient-to-r sm:dark:from-black sm:dark:to-transparent"></div>
+
+  <div class="relative px-4 py-32 mx-auto max-w-screen-xl lg:h-screen lg:items-center lg:flex">
+    <div class="max-w-xl text-center sm:text-left">
+      <h1 class="text-3xl text-white font-extrabold sm:text-5xl">
+        It is time to
+        <strong class="font-extrabold text-sky-500 sm:block">
+          Stand out!
+        </strong>
+      </h1>
+
+      <p class="max-w-lg mt-4 text-white sm:leading-relaxed sm:text-xl bg-black bg-opacity-40 p-2 rounded-lg">
+        Improve the knowledge of your child from the comfort of home
+      </p>
+
+      <div class="flex flex-wrap mt-8 text-center gap-4">
+        <a class="block w-full px-12 py-3 text-sm font-medium text-white rounded shadow bg-sky-600 sm:w-auto active:bg-rose-500 hover:bg-rose-700 focus:outline-none focus:ring" href="/find-tutor">
+          Find Tutor
+        </a>
+
+        <a class="block w-full px-12 py-3 text-sm font-medium bg-gray-200 rounded shadow text-sky-600 sm:w-auto hover:text-sky-700 active:text-sky-500 focus:outline-none focus:ring" href="/assesment">
+          Take Assesment
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container mx-auto px-4 py-6">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+		Choose Curriculum
+	</h1>
+	<p class="mt-4 text-lg text-center">
+		Join thousands of learners taking tuition from our tutors. Help your child to stay at the top of the academic game
+	</p>
+	<div class="grid md:grid-cols-3 gap-6 mt-6">
+		<a href="/find-tutor?curriculum=8-4-4|cbc" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/844.avif" alt="Student writing">
+		  <div class="px-2">
+		    <h2 class="text-base font-black pb-2">
+	        8 - 4 - 4 | CBC
+	      </h2>
+		  </div>
+		</a>
+		<a href="/find-tutor?curriculum=american" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/girl.jpeg" alt="item.title">
+		  <div class="px-2">
+		    <h2 class="text-base font-black pb-2">
+	        American
+	      </h2>
+		  </div>
+		</a>
+		<a href="/find-tutor?curriculum=british" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/girl-writing.avif" alt="item.title">
+		  <div class="px-2">
+		    <h2 class="text-base font-black pb-2">
+	        British
+	      </h2>
+		  </div>
+		</a>
+	</div>
+</section>
+<section class="container mx-auto px-4 py-6">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+		Skill Up
+	</h1>
+	<p class="mt-4 text-lg text-center">
+		Learn a real life skill that will help you stay sharp, focused and entertained at the same time. A skill that can help you make extra money 
+	</p>
+	<div class="max-w-screen-xl p-5 mx-auto dark:text-stone-100 mt-16">
+		<div class="grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
+			<a href="/skills/swimming" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/swimming.jpg);`}>
+				<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+				<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+					<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+						Swimming
+					</div>
+				</div>
+			</a>
+			<a href="/skills/music" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/music.avif);`}>
+				<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+				<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+					<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+						Music
+					</div>
+				</div>
+			</a>
+			<a href="skills/chess" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/chess.avif);`}>
+				<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+				<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+					<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+						Chess
+					</div>
+				</div>
+			</a>
+			<a href="/skills/french" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/french.jpg);`}>
+				<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+				<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+					<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+						French
+					</div>
+				</div>
+			</a>
+		</div>
+		<a class="relative mt-4 inline-block text-sm font-bold group focus:outline-none focus:ring" href="/skills">
+		  <span class="absolute inset-0 border border-current"></span>
+		  <span class="block px-12 py-3 bg-white border border-current">
+		    More Skills
+		  </span>
+		</a>
+	</div>
+</section>
+
+<section class="container mx-auto px-4 py-6">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+		Top Tutors
+	</h1>
+	<p class="mt-4 text-lg text-center">
+		Meet some of our top rated tutors
+	</p>
+	<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
+		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
+
+		  <div class="justify-between sm:flex">
+		    <div>
+		      <h5 class="text-xl font-bold">
+		        Mike Rowe
+		      </h5>
+		    </div>
+
+		    <div class="flex-shrink-0 hidden ml-3 sm:block">
+		      <img
+		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
+		        src="/images/girl-writing.avif"
+		        alt=""
+		      />
+		    </div>
+		  </div>
+
+		  <div class="mt-4 sm:pr-8">
+		    <p class="text-sm">
+		      Mike is one of the very best in this team and we love him and his work. it is super splendid
+		    </p>
+		  </div>
+
+		  <dl class="flex mt-6">
+		    <div class="flex flex-col-reverse">
+		      <dt class="text-sm font-medium">
+		      	Joined
+		      </dt>
+		      <dd class="text-xs">
+		      	31st June, 2021
+		      </dd>
+		    </div>
+		  </dl>
+		</a>
+		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
+		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
+
+		  <div class="justify-between sm:flex">
+		    <div>
+		      <h5 class="text-xl font-bold">
+		        Mike Rowe
+		      </h5>
+		    </div>
+
+		    <div class="flex-shrink-0 hidden ml-3 sm:block">
+		      <img
+		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
+		        src="/images/girl-writing.avif"
+		        alt=""
+		      />
+		    </div>
+		  </div>
+
+		  <div class="mt-4 sm:pr-8">
+		    <p class="text-sm">
+		      Mike is one of the very best in this team and we love him and his work. it is super splendid
+		    </p>
+		  </div>
+
+		  <dl class="flex mt-6">
+		    <div class="flex flex-col-reverse">
+		      <dt class="text-sm font-medium">
+		      	Joined
+		      </dt>
+		      <dd class="text-xs">
+		      	31st June, 2021
+		      </dd>
+		    </div>
+		  </dl>
+		</a>
+		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
+		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
+
+		  <div class="justify-between sm:flex">
+		    <div>
+		      <h5 class="text-xl font-bold">
+		        Mike Rowe
+		      </h5>
+		    </div>
+
+		    <div class="flex-shrink-0 hidden ml-3 sm:block">
+		      <img
+		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
+		        src="/images/girl-writing.avif"
+		        alt=""
+		      />
+		    </div>
+		  </div>
+
+		  <div class="mt-4 sm:pr-8">
+		    <p class="text-sm">
+		      Mike is one of the very best in this team and we love him and his work. it is super splendid
+		    </p>
+		  </div>
+
+		  <dl class="flex mt-6">
+		    <div class="flex flex-col-reverse">
+		      <dt class="text-sm font-medium">
+		      	Joined
+		      </dt>
+		      <dd class="text-xs">
+		      	31st June, 2021
+		      </dd>
+		    </div>
+		  </dl>
+		</a>
+		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
+		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
+
+		  <div class="justify-between sm:flex">
+		    <div>
+		      <h5 class="text-xl font-bold">
+		        Mike Rowe
+		      </h5>
+		    </div>
+
+		    <div class="flex-shrink-0 hidden ml-3 sm:block">
+		      <img
+		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
+		        src="/images/girl-writing.avif"
+		        alt=""
+		      />
+		    </div>
+		  </div>
+
+		  <div class="mt-4 sm:pr-8">
+		    <p class="text-sm">
+		      Mike is one of the very best in this team and we love him and his work. it is super splendid
+		    </p>
+		  </div>
+
+		  <dl class="flex mt-6">
+		    <div class="flex flex-col-reverse">
+		      <dt class="text-sm font-medium">
+		      	Joined
+		      </dt>
+		      <dd class="text-xs">
+		      	31st June, 2021
+		      </dd>
+		    </div>
+		  </dl>
+		</a>
+	</div>
+</section>
+
+<section>
+  <div class="container px-5 py-24 mx-auto">
+    <h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+			Testimonials
+		</h1>
+		<p class="my-4 text-lg text-center">
+			Find out more about what our customers have to say about our services
+		</p>
+    <div class="flex flex-wrap -m-4">
+      <div class="p-4 md:w-1/3 w-full">
+        <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6">
+            Am glad I found this people, They are truly lorem ipsum dolor
+          </p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium">
+                Mike Kinoti
+              </span>
+              <span class="text-sm">
+                Software developer
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3 w-full">
+        <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6">
+            Am glad I found this people, They are truly lorem ipsum dolor
+          </p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium">
+                Mike Kinoti
+              </span>
+              <span class="text-sm">
+                Software developer
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3 w-full">
+        <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6">
+            Am glad I found this people, They are truly lorem ipsum dolor sit amet que constresti put en the lara
+          </p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium">
+                Mike Kinoti
+              </span>
+              <span class="text-sm">
+                Software developer
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</Layout>
