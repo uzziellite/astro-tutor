@@ -1,0 +1,41 @@
+---
+import Layout from "@layouts/layout.astro"
+
+// src/pages/skills/[skill].astro
+export async function getStaticPaths() {
+  
+  const skills = [
+  	{
+  		"skill":"swimming"
+  	},
+  	{
+  		"skill":"music"
+  	},
+  	{
+  		"skill":"chess"
+  	},
+  	{
+  		"skill":"french"
+  	}
+  ]
+
+  let store = []
+
+  skills.map((item) => {
+    let data = {}
+    data.params = {}
+    data.params.skill = item.skill
+    store.push(data)
+  })
+  
+  return store
+}
+
+const {skill} = Astro.params
+
+const title = `${skill.charAt(0).toUpperCase()}${skill.substr(1)}`
+---
+
+<Layout title={title} description="Get a skill that will help you to be competent in the modern world.">
+	
+</Layout>
