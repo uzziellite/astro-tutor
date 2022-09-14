@@ -37,7 +37,7 @@
 	<form on:submit|preventDefault={login} class="space-y-6">
 		<div class="space-y-1 text-sm">
 			<label for="email" class="block dark:text-gray-400">Email</label>
-			<input type="email" id="email" placeholder="someone@example.com" class="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-indigo-400" bind:value={email} required autocomplete="email">
+			<input type="email" id="email" placeholder="someone@example.com" class="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-indigo-400" bind:value={email} required autocomplete="email" autofocus>
 		</div>
 		<div class="space-y-1 text-sm">
 			<label for="password" class="block dark:text-gray-400">Password</label>
@@ -52,7 +52,7 @@
 		{#if !loading}
 			<button class="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-indigo-400">Sign in</button>
 		{:else}
-			<button class="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-indigo-400">Please wait ...</button>
+			<button class="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-indigo-400">Please wait <span class="animate-ping">...</span></button>
 		{/if}
 	</form>
 	<p class="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
