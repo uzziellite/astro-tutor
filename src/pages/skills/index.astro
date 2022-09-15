@@ -2,6 +2,49 @@
 import Layout from "@layouts/layout.astro"
 ---
 
-<Layout title="Available Skills" description="Get a skill that will help you to be competent in the real world">
-	
+<Layout title="Available Skills" description="Learn a real life skill that will help you stay sharp, focused and entertained at the same time. A skill that can help you make extra money">
+	<section class="container mx-auto px-4 py-6 mt-20">
+		<h1 class="text-3xl sm:text-4xl font-black text-center uppercase">
+			Skill Up
+		</h1>
+		<p class="mt-4 text-lg text-center">
+			Learn a real life skill that will help you stay sharp, focused and entertained at the same time. A skill that can help you make extra money 
+		</p>
+		<div class="max-w-screen-xl p-5 mx-auto dark:text-stone-100 mt-16">
+			<div class="grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
+				<a href="/skills/swimming" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/swimming.jpg);`}>
+					<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+					<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+						<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+							Swimming
+						</div>
+					</div>
+				</a>
+				<a href="/skills/guitar" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/music.avif);`}>
+					<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+					<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+						<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+							Guitar
+						</div>
+					</div>
+				</a>
+				<a href="skills/chess" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/chess.avif);`}>
+					<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+					<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+						<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+							Chess
+						</div>
+					</div>
+				</a>
+				<a href="/skills/french" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/french.jpg);`}>
+					<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
+					<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+						<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
+							French
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
 </Layout>

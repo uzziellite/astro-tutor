@@ -9,6 +9,7 @@ if(localStorage.getItem('auth_token')){
   loggedIn = true
 }
 
+
 </script>
 
 <!--Header items loaded here-->
