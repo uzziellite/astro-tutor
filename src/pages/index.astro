@@ -1,9 +1,10 @@
 ---
 import Layout from "@layouts/layout.astro"
+import TopTutors from "@components/TopTutors.svelte"
 ---
 
 <Layout title="Welcome" description="Coming soon">
-<section class="relative h-[33rem]">
+<section class="relative h-[40rem]">
   <img
     class="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-25 sm:opacity-100"
     src="/images/student.avif"
@@ -14,15 +15,16 @@ import Layout from "@layouts/layout.astro"
 
   <div class="relative px-4 py-32 mx-auto max-w-screen-xl lg:h-screen lg:items-center lg:flex">
     <div class="max-w-xl text-center sm:text-left">
-      <h1 class="text-3xl text-white font-extrabold sm:text-5xl">
-        It is time to
+      <h1 class="text-3xl sm:text-white font-extrabold sm:text-5xl">
+        Bridging knowledge gaps through
         <strong class="font-extrabold text-sky-500 sm:block">
-          Stand out!
+          data-driven
         </strong>
+        assesments
       </h1>
 
-      <p class="max-w-lg mt-4 text-white sm:leading-relaxed sm:text-xl bg-black bg-opacity-40 p-2 rounded-lg">
-        Improve the knowledge of your child from the comfort of home
+      <p class="max-w-lg mt-4 text-white sm:leading-relaxed sm:text-xl bg-black sm:bg-opacity-40 p-2 rounded-lg">
+        Mtahini is a data-driven, digital assessment platform that provides real-time performance reports and qualified tutors
       </p>
 
       <div class="flex flex-wrap mt-8 text-center gap-4">
@@ -38,13 +40,13 @@ import Layout from "@layouts/layout.astro"
   </div>
 </section>
 <section class="container mx-auto px-4 py-6">
-	<h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center text-sky-600">
 		Choose Curriculum
 	</h1>
 	<p class="mt-4 text-lg text-center">
 		Join thousands of learners taking tuition from our tutors. Help your child to stay at the top of the academic game
 	</p>
-	<div class="grid md:grid-cols-3 gap-6 mt-6">
+	<div class="grid sm:grid-cols-4 gap-6 mt-6">
 		<a href="/find-tutor?curriculum=8-4-4|cbc" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
 		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/844.avif" alt="Student writing">
 		  <div class="px-2">
@@ -69,10 +71,67 @@ import Layout from "@layouts/layout.astro"
 	      </h2>
 		  </div>
 		</a>
+		<a href="/find-tutor?curriculum=igcse" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/igcse.webp" alt="">
+		  <div class="px-2">
+		    <h2 class="text-base font-black pb-2">
+	        IGCSE
+	      </h2>
+		  </div>
+		</a>
 	</div>
 </section>
 <section class="container mx-auto px-4 py-6">
-	<h1 class="text-3xl sm:text-4xl font-black sm:text-center">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center text-sky-600">
+		Why choose us
+	</h1>
+	<p class="mt-4 text-lg text-center">
+		Here are top reasons why students, teachers and parents choose us
+	</p>
+	<div class="flex flex-wrap -m-4 mt-2">
+    <div class="p-4 sm:w-1/3 w-full">
+      <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+      	<h2 class="font-extrabold text-center">
+      		Personalized Assesments
+      	</h2>
+      	<p class="text-gray-800 dark:text-white mt-2">
+      		We offer personalized assessment tests based on the learners abilities and competencies. This provides an individual assessment experience and tailors the level of challenge for every learner
+      	</p>
+				<a class="inline-block px-8 py-3 text-sm font-medium text-white bg-indigo-600 rounded transition hover:scale-110 hover:shadow-xl active:bg-indigo-500 focus:outline-none focus:ring mt-4" href="/assesment">
+				  Take Test
+				</a>
+      </div>
+    </div>
+    <div class="p-4 sm:w-1/3 w-full">
+      <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+      	<h2 class="font-extrabold text-center">
+      		Qualified Tutors
+      	</h2>
+      	<p class="text-gray-800 dark:text-white mt-2">
+      		Get connected with verified, top-rated tutors to enable you bridge your skills gaps. View tutors' qualifications, feedback and experience Choose tutor based on your learning style, personality for in-person tutoring or online.
+      	</p>
+				<a class="inline-block px-8 py-3 text-sm font-medium text-white bg-indigo-600 rounded transition hover:scale-110 hover:shadow-xl active:bg-indigo-500 focus:outline-none focus:ring mt-4" href="/find-tutor">
+				  Find tutor
+				</a>
+      </div>
+    </div>
+    <div class="p-4 sm:w-1/3 w-full">
+      <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
+      	<h2 class="font-extrabold text-center">
+      		Track Progress
+      	</h2>
+      	<p class="text-gray-800 dark:text-white mt-2">
+      		Our platform offers built-in reporting and analytics tools to help parents, teachers, and staff get real-time reports concerning students. The reports help the stakeholders develop personalized remedial programs.
+      	</p>
+				<a class="inline-block px-8 py-3 text-sm font-medium text-white bg-indigo-600 rounded transition hover:scale-110 hover:shadow-xl active:bg-indigo-500 focus:outline-none focus:ring mt-4" href="/reports">
+				  View Reports
+				</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container mx-auto px-4 py-6">
+	<h1 class="text-3xl sm:text-4xl font-black sm:text-center text-sky-600">
 		Skill Up
 	</h1>
 	<p class="mt-4 text-lg text-center">
@@ -115,7 +174,7 @@ import Layout from "@layouts/layout.astro"
 		</div>
 		<a class="relative mt-4 inline-block text-sm font-bold group focus:outline-none focus:ring" href="/skills">
 		  <span class="absolute inset-0 border border-current"></span>
-		  <span class="block px-12 py-3 bg-white border border-current">
+		  <span class="block px-12 py-3 bg-white dark:bg-gray-900 border border-current">
 		    More Skills
 		  </span>
 		</a>
@@ -130,150 +189,7 @@ import Layout from "@layouts/layout.astro"
 		Meet some of our top rated tutors
 	</p>
 	<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
-		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
-
-		  <div class="justify-between sm:flex">
-		    <div>
-		      <h5 class="text-xl font-bold">
-		        Mike Rowe
-		      </h5>
-		    </div>
-
-		    <div class="flex-shrink-0 hidden ml-3 sm:block">
-		      <img
-		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
-		        src="/images/girl-writing.avif"
-		        alt=""
-		      />
-		    </div>
-		  </div>
-
-		  <div class="mt-4 sm:pr-8">
-		    <p class="text-sm">
-		      Mike is one of the very best in this team and we love him and his work. it is super splendid
-		    </p>
-		  </div>
-
-		  <dl class="flex mt-6">
-		    <div class="flex flex-col-reverse">
-		      <dt class="text-sm font-medium">
-		      	Joined
-		      </dt>
-		      <dd class="text-xs">
-		      	31st June, 2021
-		      </dd>
-		    </div>
-		  </dl>
-		</a>
-		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
-		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
-
-		  <div class="justify-between sm:flex">
-		    <div>
-		      <h5 class="text-xl font-bold">
-		        Mike Rowe
-		      </h5>
-		    </div>
-
-		    <div class="flex-shrink-0 hidden ml-3 sm:block">
-		      <img
-		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
-		        src="/images/girl-writing.avif"
-		        alt=""
-		      />
-		    </div>
-		  </div>
-
-		  <div class="mt-4 sm:pr-8">
-		    <p class="text-sm">
-		      Mike is one of the very best in this team and we love him and his work. it is super splendid
-		    </p>
-		  </div>
-
-		  <dl class="flex mt-6">
-		    <div class="flex flex-col-reverse">
-		      <dt class="text-sm font-medium">
-		      	Joined
-		      </dt>
-		      <dd class="text-xs">
-		      	31st June, 2021
-		      </dd>
-		    </div>
-		  </dl>
-		</a>
-		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
-		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
-
-		  <div class="justify-between sm:flex">
-		    <div>
-		      <h5 class="text-xl font-bold">
-		        Mike Rowe
-		      </h5>
-		    </div>
-
-		    <div class="flex-shrink-0 hidden ml-3 sm:block">
-		      <img
-		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
-		        src="/images/girl-writing.avif"
-		        alt=""
-		      />
-		    </div>
-		  </div>
-
-		  <div class="mt-4 sm:pr-8">
-		    <p class="text-sm">
-		      Mike is one of the very best in this team and we love him and his work. it is super splendid
-		    </p>
-		  </div>
-
-		  <dl class="flex mt-6">
-		    <div class="flex flex-col-reverse">
-		      <dt class="text-sm font-medium">
-		      	Joined
-		      </dt>
-		      <dd class="text-xs">
-		      	31st June, 2021
-		      </dd>
-		    </div>
-		  </dl>
-		</a>
-		<a class="relative block p-8 overflow-hidden border border-gray-100 dark:border-none dark:bg-gray-800 rounded-lg shadow-md" href="">
-		  <span class="absolute inset-x-0 bottom-0 h-2"></span>
-
-		  <div class="justify-between sm:flex">
-		    <div>
-		      <h5 class="text-xl font-bold">
-		        Mike Rowe
-		      </h5>
-		    </div>
-
-		    <div class="flex-shrink-0 hidden ml-3 sm:block">
-		      <img
-		        class="object-cover w-16 h-16 rounded-lg shadow-sm"
-		        src="/images/girl-writing.avif"
-		        alt=""
-		      />
-		    </div>
-		  </div>
-
-		  <div class="mt-4 sm:pr-8">
-		    <p class="text-sm">
-		      Mike is one of the very best in this team and we love him and his work. it is super splendid
-		    </p>
-		  </div>
-
-		  <dl class="flex mt-6">
-		    <div class="flex flex-col-reverse">
-		      <dt class="text-sm font-medium">
-		      	Joined
-		      </dt>
-		      <dd class="text-xs">
-		      	31st June, 2021
-		      </dd>
-		    </div>
-		  </dl>
-		</a>
+		<TopTutors client:load />
 	</div>
 </section>
 
@@ -286,64 +202,43 @@ import Layout from "@layouts/layout.astro"
 			Find out more about what our customers have to say about our services
 		</p>
     <div class="flex flex-wrap -m-4">
-      <div class="p-4 md:w-1/3 w-full">
+      <div class="p-4 md:w-1/2 w-full">
         <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
           <p class="leading-relaxed mb-6">
-            Am glad I found this people, They are truly lorem ipsum dolor
+            The reports generated helped me to understand the weaknesses of my students. I could be able to tell the level in which they understood what I had taught them
           </p>
           <a class="inline-flex items-center">
-            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <img alt="testimonial" src="/images/radol.jpg" class="w-32 h-32 rounded-full flex-shrink-0 object-cover object-center" />
             <span class="flex-grow flex flex-col pl-4">
               <span class="title-font font-medium">
-                Mike Kinoti
+                Maria Wandoe
               </span>
               <span class="text-sm">
-                Software developer
+                Teacher
               </span>
             </span>
           </a>
         </div>
       </div>
-      <div class="p-4 md:w-1/3 w-full">
+      <div class="p-4 md:w-1/2 w-full">
         <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
           <p class="leading-relaxed mb-6">
-            Am glad I found this people, They are truly lorem ipsum dolor
+            This application has helped me in improving my grades by providing assesments that I can undertake on my own pace. I understand mathematics better than I did before
           </p>
           <a class="inline-flex items-center">
-            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
+            <img alt="testimonial" src="/images/brenda.jpg" class="w-32 h-32 rounded-full flex-shrink-0 object-cover object-center" />
             <span class="flex-grow flex flex-col pl-4">
               <span class="title-font font-medium">
-                Mike Kinoti
+                Brenda Nekesa Mukhaye
               </span>
               <span class="text-sm">
-                Software developer
-              </span>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="p-4 md:w-1/3 w-full">
-        <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 mb-4" viewBox="0 0 975.036 975.036">
-            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
-          </svg>
-          <p class="leading-relaxed mb-6">
-            Am glad I found this people, They are truly lorem ipsum dolor sit amet que constresti put en the lara
-          </p>
-          <a class="inline-flex items-center">
-            <img alt="testimonial" src="/images/chess.avif" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center" />
-            <span class="flex-grow flex flex-col pl-4">
-              <span class="title-font font-medium">
-                Mike Kinoti
-              </span>
-              <span class="text-sm">
-                Software developer
+                Student
               </span>
             </span>
           </a>

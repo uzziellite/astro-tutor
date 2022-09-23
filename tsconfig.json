@@ -8,7 +8,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@directives/*": ["src/directives/*"],
       "@styles/*": ["src/styles/*"],
-      "@lib/*": ["src/lib/*"]
+      "@lib/*": ["src/lib/*"],
+      "@store/*": ["src/stores/*"]
     }
   }
 }

@@ -1,0 +1,34 @@
+---
+import TheHeader from "@components/AssesmentHeader.svelte"
+import TheFooter from "@components/TheFooter.svelte"
+//import "@styles/app.css"
+
+const {title} = Astro.props
+const {description} = Astro.props
+const {og_image} = Astro.props
+const {og_url} = Astro.props
+---
+<html lang="en-KE">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+    <link rel="preconnect" href={import.meta.env.PUBLIC_CMS} crossorigin />
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="/fonts.css" rel="stylesheet" />-->
+    <meta name="robots" content="follow, index" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={og_image} />
+    <meta property="og:url" content={og_url} />
+  </head>
+  <body class="dark:bg-black dark:text-white">
+    <TheHeader client:load />
+      <main>
+        <slot />
+      </main>
+    <TheFooter />
+  </body>
+</html>
