@@ -57,6 +57,9 @@
         case "british":
           data.curriculum = "British"
           break;
+        case "igcse":
+          data.curriculum = "IGCSE"
+          break;
         default:
           data.curriculum = "8-4-4|CBC"
       }
@@ -1022,6 +1025,14 @@
                           <label for="british" class="font-medium">British</label>
                         </div>
                       </div>
+                      <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                          <input id="igcse" type="radio" class="h-4 w-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500" bind:group={data.curriculum} value="IGCSE">
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label for="igcse" class="font-medium">IGCSE</label>
+                        </div>
+                      </div>
                     </div>
                   </fieldset>
                   <fieldset>
@@ -1030,7 +1041,7 @@
                     <div class="mt-4 space-y-4">
                       <div class="flex items-start">
                         <div class="flex h-5 items-center">
-                          <select id="specific_goals" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.specific_goals}>
+                          <select id="specific_goals" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.specific_goals}>
                             <option>Help with assignments and school work</option>
                             <option>Improve phonic, reading and writing</option>
                             <option>Entrance exam preparation</option>
@@ -1111,7 +1122,7 @@
                     <div class="mt-4 grid sm:grid-cols-2 gap-4">
                       <div class="mb-2">
                         <label class="text-sm">First Name</label>
-                        <input id="pfn" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm" placeholder="Jaime" bind:value={data.user.first_name}>
+                        <input id="pfn" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" placeholder="Jaime" bind:value={data.user.first_name}>
                         {#if error_bag.first_name}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.first_name}
@@ -1120,7 +1131,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Last name</label>
-                        <input id="pln" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm" placeholder="Wamanyala" bind:value={data.user.last_name}>
+                        <input id="pln" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" placeholder="Wamanyala" bind:value={data.user.last_name}>
                         {#if error_bag.last_name}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.last_name}
@@ -1129,7 +1140,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Email Address</label>
-                        <input id="peml" type="email" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm" placeholder="someone@example.com" bind:value={data.user.email}>
+                        <input id="peml" type="email" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" placeholder="someone@example.com" bind:value={data.user.email}>
                         {#if error_bag.email}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.email}
@@ -1138,7 +1149,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Phone Number</label>
-                        <input id="pphn" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm" placeholder="0712345678" bind:value={data.user.phone}>
+                        <input id="pphn" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" placeholder="0712345678" bind:value={data.user.phone}>
                         {#if error_bag.phone}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.phone}
@@ -1147,7 +1158,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">County of Residence</label>
-                        <select id="prsd" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.user.county}>
+                        <select id="prsd" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.user.county}>
                           <option>Nairobi</option>
                           <option>Mombasa</option>
                           <option>Kisumu</option>
@@ -1158,7 +1169,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Address</label>
-                        <input id="padd" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm" placeholder="Westlands, Brookside, Gables Apartment House Number XYZs" bind:value={data.user.address}>
+                        <input id="padd" type="text" class="rounded border-gray-600 text-indigo-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" placeholder="Westlands, Brookside, Gables Apartment House Number XYZs" bind:value={data.user.address}>
                         {#if error_bag.address}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.address}
@@ -1168,11 +1179,11 @@
                     </div>
                     <div class="mb-2">
                       <label class="text-sm">How did you know about us</label>
-                      <select id="padvert" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.user.ad_method}>
-                        <option>Facebook</option>
+                      <select id="padvert" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.user.ad_method}>
                         <option>Google</option>
-                        <option>Referral</option>
                         <option>Online Ad</option>
+                        <option>Referral</option>
+                        <option>Facebook</option>
                         <option>Linkedin</option>
                         <option>Blog Post</option>
                       </select>
@@ -1253,7 +1264,7 @@
                     <div class="mt-4 grid sm:grid-cols-2 gap-4">
                       <div class="mb-2">
                         <label class="text-sm">Starting Date</label>
-                        <input id="lsstart" type="date" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.schedule.lesson.starting_date} min={minDate}>
+                        <input id="lsstart" type="date" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.schedule.lesson.starting_date} min={minDate}>
                         {#if error_bag.starting_date}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.starting_date}
@@ -1262,7 +1273,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Duration</label>
-                        <select id="lsdd" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.schedule.lesson.duration}>
+                        <select id="lsdd" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.schedule.lesson.duration}>
                           <option>One Week</option>
                           <option>Two Weeks</option>
                           <option>Three Weeks</option>
@@ -1272,7 +1283,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Hours per day</label>
-                        <select id="lshrs" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm" bind:value={data.schedule.lesson.hours_per_day}>
+                        <select id="lshrs" class="rounded border-gray-600 focus:ring-indigo-500 w-full text-sm dark:bg-gray-900" bind:value={data.schedule.lesson.hours_per_day}>
                           <option>One hour</option>
                           <option>One hour thirty minutes</option>
                           <option>Two hours</option>
@@ -1286,7 +1297,7 @@
                       </div>
                       <div class="mb-2">
                         <label class="text-sm">Starting time</label>
-                        <input type="time" class="w-full rounded border-gray-600 focus:ring-indigo-500 text-sm" bind:value={data.schedule.lesson.starting_time}>
+                        <input type="time" class="w-full rounded border-gray-600 focus:ring-indigo-500 text-sm dark:bg-gray-900" bind:value={data.schedule.lesson.starting_time}>
                         {#if error_bag.starting_time}
                           <p class="mt-2 text-xs text-red-500">
                             {error_bag.starting_time}
