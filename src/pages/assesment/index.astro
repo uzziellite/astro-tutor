@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/layout.astro"
+import LoginAlert from "@components/LoginAlert.svelte"
 ---
 
 <Layout title="Assesment">
@@ -45,4 +46,5 @@ import Layout from "@layouts/layout.astro"
 			</a>-->
 		</div>
 	</section>
+	<LoginAlert client:load />
 </Layout>

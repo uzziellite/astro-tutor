@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/layout.astro"
 import TopicCard from "@components/TopicCard.svelte"
+import LoginAlert from "@components/LoginAlert.svelte"
 ---
 
 <Layout title="Select Topic">
@@ -15,4 +16,5 @@ import TopicCard from "@components/TopicCard.svelte"
 			<TopicCard client:load />
 		</div>
 	</div>
+	<LoginAlert client:load />
 </Layout>

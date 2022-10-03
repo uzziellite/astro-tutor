@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/layout.astro"
 import GradesCard from "@components/GradesCard.svelte"
+import LoginAlert from "@components/LoginAlert.svelte"
 ---
 
 <Layout title="Select Grades">
@@ -17,4 +18,5 @@ import GradesCard from "@components/GradesCard.svelte"
 			</div>
 		</div>
 	</section>
+	<LoginAlert client:load />
 </Layout>

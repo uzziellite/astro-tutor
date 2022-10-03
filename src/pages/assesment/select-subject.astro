@@ -2,6 +2,7 @@
 import Layout from "@layouts/layout.astro"
 import AssesmentNavbar from "@components/AssesmentNavbar.svelte"
 import SubjectCard from "@components/SubjectCard.svelte"
+import LoginAlert from "@components/LoginAlert.svelte"
 ---
 
 <Layout title="Select Subject">
@@ -19,4 +20,5 @@ import SubjectCard from "@components/SubjectCard.svelte"
 			</div>
 		</div>
 	</div>
+	<LoginAlert client:load />
 </Layout>

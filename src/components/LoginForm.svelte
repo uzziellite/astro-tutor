@@ -20,7 +20,7 @@
 			localStorage.setItem('_lxc',resp.data._lxc)
 			localStorage.setItem('_xcc',resp.data._xcc)
 
-			if(typeof window != 'undefined') window.location.href = '/'
+			if(typeof window != 'undefined') window.location.href = '/assesment'
 		})
 		.catch(() => {
 			login_error = "Wrong credentials. Please try again"
@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="grid place-content-center place-items-center">
+<div class="grid place-content-center place-items-center h-screen">
 	<div class="w-full max-w-md p-8 space-y-3 rounded-xl bg-gray-200 dark:bg-gray-900 dark:text-gray-100 shadow-md">
 		<h1 class="text-2xl font-bold text-center">Login</h1>
 		<form on:submit|preventDefault={login} class="space-y-6">

@@ -5,11 +5,9 @@ let navbarOpen = false
 let loggedIn = false
 const name = import.meta.env.PUBLIC_NAME
 
-if(localStorage.getItem('auth_token')){
+if(localStorage.getItem('authenticated')){
   loggedIn = true
 }
-
-
 </script>
 
 <!--Header items loaded here-->
