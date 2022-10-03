@@ -14,6 +14,8 @@
 		axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/login`,{
 			email,
 			password
+		},{
+			withCredentials:true
 		}).then((resp) => {
 			//Login successful
 			localStorage.setItem('authenticated',true)
