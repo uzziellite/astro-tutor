@@ -8,17 +8,17 @@
 
 	const login = async () => {
 
-		localStorage.removeItem('authenticated')
+		localStorage.clear()
 		loading = true
 		
 		axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/login`,{
 			email,
 			password
-		},{
-			withCredentials:true
 		}).then((resp) => {
 			//Login successful
 			localStorage.setItem('authenticated',true)
+			localStorage.setItem('_lxc',resp.data._lxc)
+			localStorage.setItem('_xcc',resp.data._xcc)
 
 			if(typeof window != 'undefined') window.location.href = '/'
 		})
