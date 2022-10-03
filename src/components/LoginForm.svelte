@@ -8,7 +8,7 @@
 
 	const login = async () => {
 
-		localStorage.clearItem('authenticated')
+		localStorage.removeItem('authenticated')
 		loading = true
 		
 		axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/login`,{
