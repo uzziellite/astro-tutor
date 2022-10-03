@@ -1,0 +1,49 @@
+---
+import {Directus} from "@directus/sdk"
+import Layout from "@layouts/layout.astro"
+
+const url = import.meta.env.PUBLIC_CMS
+const directus = new Directus(url)
+let news_data
+let news
+
+try{
+	news_data = await directus.items('tut_blog').readByQuery({
+		filter:{
+			"status":{
+				"_eq":"published"
+			}
+		},
+		limit:50,
+		sort:"-date_created"
+	})
+	news = news_data.data
+}catch(err){
+	console.error(err)
+}
+
+---
+
+<Layout title="Mtahini Blog" description="We keep you posted on all the latest information regarding education development levels and the trends in various curriculum">
+	<div class="max-w-screen-xl p-5 mx-auto dark:text-stone-100 mt-24">
+		<div class="grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
+			{
+				news.map((item) => (
+					<a href={`/blog/${item.slug}`} class="relative flex items-end justify-start w-full text-left bg-center bg-cover h-96 dark:bg-stone-500" style={`background-image: url(${url}assets/${item.banner}?format=webp);`}>
+						<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-900 to-stone-900"></div>
+						<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+							<div class="px-3 py-2 text-xs font-semibold tracking-wider uppercase text-stone-100">
+								{item.category}
+							</div>
+						</div>
+						<h2 class="z-10 p-5">
+							<p class="font-medium text-stone-100">
+								{item.title}
+							</p>
+						</h2>
+					</a>
+				))
+			}
+		</div>
+	</div>
+</Layout>

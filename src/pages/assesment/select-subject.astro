@@ -1,0 +1,22 @@
+---
+import Layout from "@layouts/layout.astro"
+import AssesmentNavbar from "@components/AssesmentNavbar.svelte"
+import SubjectCard from "@components/SubjectCard.svelte"
+---
+
+<Layout title="Select Subject">
+	<div class="">
+		<h1 class="text-3xl sm:text-4xl font-black text-center text-sky-600 mt-24">
+			Select Subject
+		</h1>
+		<p class="mt-4 text-lg text-center max-w-sm mx-auto">
+			What subject do you want to study? We have a collection of all the subjects for your chosen grade
+		</p>
+		<AssesmentNavbar client:load />
+		<div class="container mx-auto p-4">
+			<div class="grid gap-4 mb-48">
+				<SubjectCard client:load />
+			</div>
+		</div>
+	</div>
+</Layout>

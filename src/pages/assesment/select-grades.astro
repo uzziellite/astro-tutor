@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/layout.astro"
+import GradesCard from "@components/GradesCard.svelte"
+---
+
+<Layout title="Select Grades">
+	<section class="container mx-auto px-4 pt-16 mt-16">
+		<h1 class="text-3xl sm:text-4xl font-black text-center text-sky-600">
+			Select Grade
+		</h1>
+		<p class="mt-4 text-lg text-center max-w-sm mx-auto">
+			Please select the grade or level where the student is located. This will help in determining the kind of content that will be available to the student
+		</p>
+		<div class="container mx-auto p-4">
+			<div class="grid gap-4">
+				<GradesCard client:load />
+			</div>
+		</div>
+	</section>
+</Layout>

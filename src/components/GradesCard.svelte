@@ -1,45 +1,84 @@
 <script>
-	import {activeAssesmentTab} from "@store/store.js"
+	//import {activeAssesmentTab} from "@store/store.js"
 	import {Directus} from "@directus/sdk"
+	import {onMount} from "svelte"
 
 	const directus = new Directus(import.meta.env.PUBLIC_CMS)
 
 	//Since activeAssesmentTab returns an array index 
 	//We need to know what it represents
 	//To load the data accordingly
-	const codeInterpreter = ['Mathematics','Humanities','']
+	//const codeInterpreter = ['Mathematics','Humanities','']
 
 	let loading
-	let error = "No data is available"
+	let error
 	let active
 	let grades
+	let curriculum
+
+	const loadGrades = async () => {
+		loading = true
+		await directus.items('tut_grades').readByQuery({
+			filter:{
+				"_and": [
+					{
+						"status":{
+							"_eq":"published"
+						}
+					},
+					{
+						"curriculum":{
+							"slug":{
+								"_eq": curriculum
+							}
+						}
+					}
+				]
+			},
+			sort:"sorter"
+		}).then(resp => {
+			grades = resp.data
+			loading = false
+		}).catch(err => {
+			console.error(err)
+			error = err
+			loading = false
+		})
+	}
+
+	onMount(() => {
+		curriculum = window.location.search.substr(12)
+		loadGrades()
+	})
+
 
 	//Find current active tab and load data
-	$: {
+	/*$: {
 		
 		activeAssesmentTab.subscribe(value => active = value )
-		
 
-	}
+	}*/
 </script>
 
-<div class="h-[20rem] grid place-content-center place-items-center">
-	{#if loading && !error}
+<div class={`grid place-content-center place-items-center ${error | loading ? 'h-[20rem]' : ''}`}>
+	{#if loading}
 			<svg class="animate-spin -ml-1 mr-3 h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 	      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
 	      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
 	    </svg>
 	    <span class="text-lg">Loading data</span>
 	{:else}
-		<div class="text-red-600 text-lg">
-			{error}		
-		</div>
+		{#if error}
+			<div class="text-red-600 text-lg">
+				{error}		
+			</div>
+		{/if}
 	{/if}
 </div>
 
 {#if grades}
-	{#each grades as data}
-		<a href="/assesment/math/pre-k" class="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-md">
+	{#each grades as {grade,description,slug} }
+		<a href={`/assesment/select-subject?curriculum=${curriculum}&grade=${slug}`} class="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-md">
 		  <div class="flex items-start p-6">
 		    <!--<div class="block shrink-0 hidden sm:flex">
 		      <img
@@ -51,13 +90,12 @@
 		    <div class="ml-4">
 		      <strong class="font-medium text-lg">
 		        <span class="hover:underline text-gray-900 dark:text-white">
-		          {data.grade}
+		          {grade}
 		        </span>
 		      </strong>
 
 		      <p class="text-sm text-gray-700 line-clamp-2 dark:text-gray-100">
-		        <span class="font-bold">Includes:</span>
-		        {data.entails}
+		        {description}
 		      </p>
 		    </div>
 		  </div>
@@ -82,7 +120,7 @@
 		      </svg>
 
 		      <span class="text-[10px] font-medium sm:text-xs">
-		      	{data.subject}
+		      	{grade}
 		      </span>
 		    </strong>
 		  </div>

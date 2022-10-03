@@ -41,44 +41,44 @@ import TopTutors from "@components/TopTutors.svelte"
 </section>
 <section class="container mx-auto px-4 py-6">
 	<h1 class="text-3xl sm:text-4xl font-black sm:text-center text-sky-600">
-		Choose Curriculum
+		Categories
 	</h1>
 	<p class="mt-4 text-lg text-center">
 		Join thousands of learners taking tuition from our tutors. Help your child to stay at the top of the academic game
 	</p>
-	<div class="grid sm:grid-cols-4 gap-6 mt-6">
-		<a href="/find-tutor?curriculum=8-4-4|cbc" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+	<div class="grid sm:grid-cols-3 gap-6 mt-6">
+		<a href="/find-tutor?curriculum=cbc" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
 		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/844.avif" alt="Student writing">
 		  <div class="px-2">
-		    <h2 class="text-base font-black pb-2">
-	        8 - 4 - 4 | CBC
+		    <h2 class="text-base font-black pb-2 text-center">
+	        CBC
 	      </h2>
 		  </div>
 		</a>
-		<a href="/find-tutor?curriculum=american" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		<a href="/find-tutor?curriculum=8-4-4" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
 		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/girl.jpeg" alt="item.title">
 		  <div class="px-2">
-		    <h2 class="text-base font-black pb-2">
-	        American
+		    <h2 class="text-base font-black pb-2 text-center">
+	        8-4-4
 	      </h2>
 		  </div>
 		</a>
 		<a href="/find-tutor?curriculum=british" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
 		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/girl-writing.avif" alt="item.title">
 		  <div class="px-2">
-		    <h2 class="text-base font-black pb-2">
+		    <h2 class="text-base font-black pb-2 text-center">
 	        British
 	      </h2>
 		  </div>
 		</a>
-		<a href="/find-tutor?curriculum=igcse" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
+		<!--<a href="/find-tutor?curriculum=igcse" class="dark:bg-gray-900 rounded-xl shadow-md cursor-pointer">
 		  <img class="w-full rounded-tr-xl rounded-tl-xl" src="/images/igcse.webp" alt="">
 		  <div class="px-2">
 		    <h2 class="text-base font-black pb-2">
 	        IGCSE
 	      </h2>
 		  </div>
-		</a>
+		</a>-->
 	</div>
 </section>
 <section class="container mx-auto px-4 py-6">
@@ -92,13 +92,13 @@ import TopTutors from "@components/TopTutors.svelte"
     <div class="p-4 sm:w-1/3 w-full">
       <div class="h-full bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-md">
       	<h2 class="font-extrabold text-center">
-      		Personalized Assesments
+      		Personalized Learning
       	</h2>
       	<p class="text-gray-800 dark:text-white mt-2">
-      		We offer personalized assessment tests based on the learners abilities and competencies. This provides an individual assessment experience and tailors the level of challenge for every learner
+      		We offer personalized learning and tests based on the learners abilities and competencies. This provides individual experience and tailors the level of challenge for every learner
       	</p>
 				<a class="inline-block px-8 py-3 text-sm font-medium text-white bg-indigo-600 rounded transition hover:scale-110 hover:shadow-xl active:bg-indigo-500 focus:outline-none focus:ring mt-4" href="/assesment">
-				  Take Test
+				  Start Learning
 				</a>
       </div>
     </div>
@@ -163,11 +163,11 @@ import TopTutors from "@components/TopTutors.svelte"
 					</div>
 				</div>
 			</a>
-			<a href="/skills/french" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/french.jpg);`}>
+			<a href="/skills/kids-coding" class="relative flex items-end justify-start w-full bg-center bg-cover h-72 rounded-xl" style={`background-image: url(/images/coding-kids.avif);`}>
 				<div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b via-transparent from-stone-700 to-transparent"></div>
 				<div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
 					<div class="px-3 py-2 text-lg font-semibold tracking-wider uppercase text-stone-100">
-						French
+						Coding For Kids
 					</div>
 				</div>
 			</a>

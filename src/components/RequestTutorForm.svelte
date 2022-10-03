@@ -60,8 +60,11 @@
         case "igcse":
           data.curriculum = "IGCSE"
           break;
+        case "8-4-4":
+          data.curriculum = "8-4-4"
+          break;
         default:
-          data.curriculum = "8-4-4|CBC"
+          data.curriculum = "CBC"
       }
     }
 
@@ -1003,10 +1006,18 @@
                     <div class="mt-4 space-y-4">
                       <div class="flex items-start">
                         <div class="flex h-5 items-center">
-                          <input id="cbc" type="radio" class="h-4 w-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500" bind:group={data.curriculum} value="8-4-4|CBC">
+                          <input id="cbc" type="radio" class="h-4 w-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500" bind:group={data.curriculum} value="CBC">
                         </div>
                         <div class="ml-3 text-sm">
-                          <label for="cbc" class="font-medium">8-4-4|CBC</label>
+                          <label for="cbc" class="font-medium">CBC</label>
+                        </div>
+                      </div>
+                      <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                          <input id="8-4-4" type="radio" class="h-4 w-4 rounded border-gray-600 text-indigo-600 focus:ring-indigo-500" bind:group={data.curriculum} value="8-4-4">
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <label for="8-4-4" class="font-medium">8-4-4</label>
                         </div>
                       </div>
                       <div class="flex items-start">
