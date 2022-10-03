@@ -59,7 +59,8 @@
 					]
 				},
 				limit:-1,
-				fields:['name,tut_sub_topics.name,tut_sub_topics.id']
+				fields:['name,tut_sub_topics.name,tut_sub_topics.id'],
+				sort:"date_created"
 			}).then(resp => {
 				topics = resp.data
 				loading = false
