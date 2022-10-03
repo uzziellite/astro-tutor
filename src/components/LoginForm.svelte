@@ -1,11 +1,5 @@
 <script>
-	import {Directus} from "@directus/sdk"
-
-	const directus = new Directus(import.meta.env.PUBLIC_CMS,{
-		auth:{
-			msRefreshBeforeExpires: 2629746000
-		}
-	})
+	import axios from "axios"
 
 	let email
 	let password
@@ -14,15 +8,17 @@
 
 	const login = async () => {
 
+		localStorage.clearItem('authenticated')
 		loading = true
 		
-		await directus.auth.login({email,password})
-		.then(() => {
-			
-			if(typeof window != 'undefined'){
-				window.location.href = '/'
-			}
+		axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/login`,{
+			email,
+			password
+		}).then((resp) => {
+			//Login successful
+			localStorage.setItem('authenticated',true)
 
+			if(typeof window != 'undefined') window.location.href = '/'
 		})
 		.catch(() => {
 			login_error = "Wrong credentials. Please try again"
