@@ -14,9 +14,12 @@
 	onMount(() => {
 		const query = window.location.search
 		const params = new URLSearchParams(query)
+		const path = `${window.location.pathname}${window.location.search}`
+		localStorage.removeItem('topic_path')
 		subject = params.get("subject")
 		grade = params.get("grade")
 		curriculum = params.get("curriculum")
+		localStorage.setItem('topic_path',path)
 	})
 
 	$: {

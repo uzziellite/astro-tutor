@@ -19,6 +19,7 @@
 	import {time} from "@store/store.js"
 	import {onDestroy} from 'svelte'
 	import {onMount} from "svelte"
+	import axios from "axios"
 
 	let error
 	let answer
@@ -26,6 +27,7 @@
 	let isWrong
 	let question
 	let isCorrect
+	let topicPath
 	let identifier
 	let answerError
 	let unsubscribe
@@ -34,6 +36,7 @@
 	let singleAnswer
 	let answerLoading
 	$:  answerBag = []
+	let answeredCorrect = 0
 	let questionIndex = 0
 	$:  answerBagIndex = []
 	let showExample = false
@@ -50,6 +53,7 @@
 		const query = window.location.search
 		const params = new URLSearchParams(query)
 		identifier = params.get("identifier")
+		topicPath = localStorage.getItem('topic_path')
 	})
 
 	const loadQuestions = () => {
@@ -69,7 +73,7 @@
 					}
 				]
 			},
-			fields:['name,topic.name,tut_questions.answer_type,tut_questions.available_answers,tut_questions.notes,tut_questions.question,tut_questions.correct_answer'],
+			fields:['name,topic.name,tut_questions.answer_type,tut_questions.available_answers,tut_questions.notes,tut_questions.question,tut_questions.correct_answer,tut_questions.id'],
 			deep:{
 				"tut_questions":{
 					"_sort":"date_created"
@@ -156,6 +160,7 @@
 		//For input and single select
 			if(answerBag[0] == ans){
 				isCorrect = true
+				answeredCorrect += 1
 				recordResult(true,time)
 			}else{
 				isWrong = true
@@ -179,10 +184,33 @@
 		}
 	}
 
+	//Save what the student has scored in the database
+	const saveScoreToDatabase = (correct,time) => {
+		//User is authenticated
+		if(localStorage.getItem('_lxc')){
+			const id = question[0].tut_questions[questionIndex].id
+			const _lxc = localStorage.getItem('_lxc')
+			
+			axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/student-data`,{
+				id,
+				_lxc,
+				correct,
+				time
+			}).then(() => {
+				console.log('Answer saved')
+			}).catch(err => {
+				console.error(err)
+			})
+
+		}else{
+			window.location.href = '/login'
+		}
+	}
+
 	//Record what the student scored
 	const recordResult = (correct,time) => {
 		//Save result to the database
-
+		saveScoreToDatabase(correct,time)
 		//Move to the next question
 		if(questionIndex < question[0].tut_questions.length - 1){
 			answeredQuestions += 1
@@ -198,42 +226,38 @@
 		//Reset variables to default
 		answerBag = []
 		answerBagIndex = []
+		error = null
 
-		unsubscribe = time.subscribe(value => {
-			currentTimer = value
-		})
-	}
-
-	const removeMarkingAlert = (correct) => {
-		if(questionIndex == question[0].tut_questions.length - 1){
-			//Remove alert after 1.3 seconds
-			setTimeout(() => {
-				if(correct){
-					isCorrect = null
-				}else{
-					isWrong = null
-				}
-			},1300)
-		}else{
-			//Remove alert after 1.3 seconds
-			setTimeout(() => {
-				if(correct){
-					isCorrect = null
-				}else{
-					isWrong = null
-				}
-
-				resetToDefault()
-			},1300)
+		//Only reset when the student has not answered all the questions
+		if(answeredQuestions < question[0].tut_questions.length){
+			unsubscribe = time.subscribe(value => {
+				currentTimer = value
+			})
 		}
 	}
 
+	//Give student four seconds break to breath
+	const removeMarkingAlert = (correct) => {
+		//Remove alert after 4 seconds
+		setTimeout(() => {
+			if(correct){
+				isCorrect = null
+			}else{
+				isWrong = null
+			}
+
+			resetToDefault()
+		},4000)
+	}
+
+	//Terminate timer
 	const terminateTimer = () => {
 		unsubscribe()
 		unsubscribe = null
 		currentTimer = 0
 	}
 
+	//Handle timer or reset to default
 	const handleTimer = () => {
 		showExample = ! showExample
 		
@@ -246,12 +270,20 @@
 		}
 	}
 
+	//Restart submission if a new value has emerged
 	const restartSubmission = () => {
 		submissionError = ! submissionError
 
 		unsubscribe = time.subscribe(value => {
 			currentTimer = value
 		})
+	}
+
+	//Determine Percentage scored
+	$:{
+		if(question){
+			percentageScored = Math.floor(( answeredCorrect / question[0].tut_questions.length ) * 100 )
+		}
 	}
 
 	onDestroy(() => {
@@ -294,7 +326,7 @@
 	      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
 	    </li>
 	    <li>
-	    	<a class="block transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+	    	<a href={topicPath} class="block transition-colors text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
 	        {question[0].topic.name}
 	      </a>
 	    </li>
@@ -529,11 +561,11 @@
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 class="text-lg font-medium leading-6 text-red-600 uppercase" id="modal-title">
-                	Sorry!
+                	Oooops, Ouch, Nooo!
                 </h3>
                 <div class="mt-2">
                   <p class="text-sm">
-                  	You did not get that right
+                  	You did not get that right. Make sure to check examples if you are not sure on how to solve the problem.
                   </p>
                 </div>
               </div>
