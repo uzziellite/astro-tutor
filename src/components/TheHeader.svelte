@@ -34,7 +34,7 @@ if(localStorage.getItem('authenticated')){
             <a
               class="px-1 py-2 flex items-center text-sm uppercase transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
               href="/assesment">
-              Self Learning
+              Start Learning
             </a>
           </li>
           <li class="flex items-center">

@@ -1,6 +1,7 @@
 <script>
 	import {onMount} from "svelte"
 	import {Directus} from "@directus/sdk"
+	import axios from "axios"
 
 	let error
 	let grade
@@ -60,7 +61,12 @@
 				},
 				limit:-1,
 				fields:['name,tut_sub_topics.name,tut_sub_topics.id'],
-				sort:"date_created"
+				sort:"date_created",
+				deep:{
+					"tut_sub_topics":{
+						"_sort":"date_created"
+					}
+				}
 			}).then(resp => {
 				topics = resp.data
 				loading = false
@@ -70,6 +76,10 @@
 				loading = false
 			})
 		}
+	}
+
+	const determineProgress = () => {
+		axios.get().then().catch()
 	}
 </script>
 
@@ -109,7 +119,7 @@
 	</div>
 {:else}
 	{#if ! loading}
-		<p class="text-center text-red-600 mt-[16rem]">
+		<p class="text-center text-red-600 my-[16rem]">
 			Sorry, there are no topics for the subject available for this grade at the moment. We will be adding them soon
 		</p>
 	{/if}
