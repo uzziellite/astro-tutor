@@ -109,7 +109,7 @@
 				<h2 class="text-sky-600 uppercase">
 					{name} <span class="text-black dark:text-white text-xs ml-4">
 						<!--TODO Make progress dynamic-->
-						Progress 0%
+						<!-- Progress 0% -->
 					</span>
 				</h2>
 				{#each tut_sub_topics as {name,id}, count}

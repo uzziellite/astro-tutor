@@ -28,6 +28,7 @@
 	let question
 	let isCorrect
 	let topicPath
+	let completed
 	let identifier
 	let answerError
 	let unsubscribe
@@ -189,11 +190,11 @@
 		//User is authenticated
 		if(localStorage.getItem('_lxc')){
 			const id = question[0].tut_questions[questionIndex].id
-			const _lxc = localStorage.getItem('_lxc')
+			const lxc = localStorage.getItem('_lxc')
 			
 			axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/student-data`,{
 				id,
-				_lxc,
+				lxc,
 				correct,
 				time
 			}).then(() => {
@@ -219,6 +220,7 @@
 		}else{
 			answeredQuestions += 1
 			removeMarkingAlert(correct)
+			completed = true
 		}
 	}
 
@@ -420,14 +422,15 @@
 					</div>
 				{/if}
 				<!-- End chosen answers -->
-
-				<button class="mt-4 inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 focus:outline-none focus:ring" on:click={() => verifyAnswer()}>
-					{#if answerLoading}
-						Submitting <span class="animate-ping">...</span>
-					{:else}
-						Submit
-					{/if}
-				</button>
+				{#if !completed}
+					<button class="mt-4 inline-block px-12 py-3 text-sm font-medium text-white bg-indigo-600 border border-indigo-600 rounded active:text-indigo-500 focus:outline-none focus:ring" on:click={() => verifyAnswer()}>
+						{#if answerLoading}
+							Submitting <span class="animate-ping">...</span>
+						{:else}
+							Submit
+						{/if}
+					</button>
+				{/if}
 			{/if}
 		</div>
 
@@ -476,6 +479,19 @@
 			</div>
 		{/if}
 	</div>
+	{#if completed}
+		<div class="grid p-4 my-4 bg-gray-200 dark:bg-gray-900 rounded-md">
+			<h2 class="text-green-600 text-2xl text-center">
+				Congratulations
+			</h2>
+			<p class="text-lg mt-2">
+				You have completed this module. You can check other modules to continue boosting your skills. Please take note that your performance report and recommendations will be available once you have completed an entire topic for your grade.
+			</p>
+			<a href={topicPath} class="mt-2 block underline">
+        Back to all topics
+      </a>
+		</div>
+	{/if}
 {/if}
 
 {#if submissionError}
