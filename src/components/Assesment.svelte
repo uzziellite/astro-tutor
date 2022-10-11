@@ -14,10 +14,7 @@
 </svelte:head>
 
 <script>
-	import { formatTime } from "@directives/utils.js"
 	import {Directus} from "@directus/sdk"
-	import {time} from "@store/store.js"
-	import {onDestroy} from 'svelte'
 	import {onMount} from "svelte"
 	import axios from "axios"
 
@@ -31,9 +28,7 @@
 	let completed
 	let identifier
 	let answerError
-	let unsubscribe
-	let answers = []
-	let currentTimer
+	//let answers = []
 	let singleAnswer
 	let answerLoading
 	$:  answerBag = []
@@ -41,14 +36,9 @@
 	let questionIndex = 0
 	$:  answerBagIndex = []
 	let showExample = false
-	let percentageScored = 0
 	let answeredQuestions = 0
 	let submissionError = false
 	const directus = new Directus(import.meta.env.PUBLIC_CMS)
-
-	unsubscribe = time.subscribe(value => {
-		currentTimer = value
-	})
 
 	onMount(() => {
 		const query = window.location.search
@@ -74,7 +64,7 @@
 					}
 				]
 			},
-			fields:['name,topic.name,tut_questions.answer_type,tut_questions.available_answers,tut_questions.notes,tut_questions.question,tut_questions.correct_answer,tut_questions.id'],
+			fields:['name,topic.name,tut_questions.answer_type,tut_questions.available_answers,tut_questions.notes,tut_questions.question,tut_questions.correct_answer,tut_questions.id,tut_questions.explanation'],
 			deep:{
 				"tut_questions":{
 					"_sort":"date_created"
@@ -125,18 +115,11 @@
 	//Clear answer bags upon submission of answers
 	const chooseSingleAnswer = (ans,index) => {
 		//Not answered
-		if(answerBag.length < 1){
-			answerBag.push(ans)
-		}else{
-			answerBag = []
-			answerBag.push(ans)
-		}
+		answerBag = []
+		answerBag.push(ans)
 	}
 
 	const verifyAnswer = () => {
-		const timeTaken = currentTimer / 1000
-		terminateTimer()
-
 		if(singleAnswer){
 			answerBag.push(singleAnswer)
 		}
@@ -148,12 +131,12 @@
 			//Load the answer
 			const correct_answer = question[0].tut_questions[questionIndex].correct_answer
 			//Begin Marking
-			confirmAnswer(correct_answer,timeTaken)
+			confirmAnswer(correct_answer)
 		}
 	}
 
 	//Confirm student answer
-	const confirmAnswer = (ans,time) => {
+	const confirmAnswer = (ans) => {
 		//Remove any whitespaces
 		const cleanedAns = ans.replace(/\s+/g, '')
 		
@@ -162,10 +145,11 @@
 			if(answerBag[0] == ans){
 				isCorrect = true
 				answeredCorrect += 1
-				recordResult(true,time)
+				recordResult(true)
 			}else{
 				isWrong = true
-				recordResult(false,time)
+				console.log('Got it wrong')
+				recordResult(false)
 			}
 		}else if(answerBag.length > 1){
 			//For multiple select
@@ -174,10 +158,10 @@
 
 			if(sortedAnswers.length === answerArr.length && sortedAnswers.every((value, index) => value === answerArr[index])){
 				isCorrect = true
-				recordResult(true,time)
+				recordResult(true)
 			}else{
 				isWrong = true
-				recordResult(false,time)
+				recordResult(false)
 			}
 
 		}else{
@@ -185,42 +169,22 @@
 		}
 	}
 
-	//Save what the student has scored in the database
-	const saveScoreToDatabase = (correct,time) => {
-		//User is authenticated
-		if(localStorage.getItem('_lxc')){
-			const id = question[0].tut_questions[questionIndex].id
-			const lxc = localStorage.getItem('_lxc')
-			
-			axios.post(`${import.meta.env.PUBLIC_INVITE_URL}api/student-data`,{
-				id,
-				lxc,
-				correct,
-				time
-			}).then(() => {
-				console.log('Answer saved')
-			}).catch(err => {
-				console.error(err)
-			})
-
-		}else{
-			window.location.href = '/login'
-		}
-	}
-
 	//Record what the student scored
-	const recordResult = (correct,time) => {
-		//Save result to the database
-		saveScoreToDatabase(correct,time)
-		//Move to the next question
-		if(questionIndex < question[0].tut_questions.length - 1){
-			answeredQuestions += 1
-			questionIndex += 1
-			removeMarkingAlert(correct)
-		}else{
-			answeredQuestions += 1
-			removeMarkingAlert(correct)
-			completed = true
+	const recordResult = (correct) => {
+		//No need to save to the database coz this is revision
+		//However,help the student when they get it wrong by showing them
+		//How it is done then
+		//Move to the next question if answered correctly
+		if(correct){
+			if(questionIndex < question[0].tut_questions.length - 1){
+				answeredQuestions += 1
+				questionIndex += 1
+				removeMarkingAlert(correct)
+			}else{
+				answeredQuestions += 1
+				removeMarkingAlert(correct)
+				completed = true
+			}
 		}
 	}
 
@@ -229,68 +193,48 @@
 		answerBag = []
 		answerBagIndex = []
 		error = null
-
-		//Only reset when the student has not answered all the questions
-		if(answeredQuestions < question[0].tut_questions.length){
-			unsubscribe = time.subscribe(value => {
-				currentTimer = value
-			})
-		}
 	}
 
-	//Give student four seconds break to breath
+	//Give student three seconds break to breath
 	const removeMarkingAlert = (correct) => {
-		//Remove alert after 4 seconds
-		setTimeout(() => {
-			if(correct){
+		//Remove alert after 3 seconds
+		if(correct){
+			setTimeout(() => {
 				isCorrect = null
-			}else{
-				isWrong = null
-			}
-
+				resetToDefault()
+			},3000)
+		}else{
 			resetToDefault()
-		},4000)
-	}
-
-	//Terminate timer
-	const terminateTimer = () => {
-		unsubscribe()
-		unsubscribe = null
-		currentTimer = 0
+		}
 	}
 
 	//Handle timer or reset to default
 	const handleTimer = () => {
 		showExample = ! showExample
-		
-		if(showExample){
-			terminateTimer()
-		}else{
-			unsubscribe = time.subscribe(value => {
-				currentTimer = value
-			})
-		}
 	}
 
 	//Restart submission if a new value has emerged
 	const restartSubmission = () => {
 		submissionError = ! submissionError
-
-		unsubscribe = time.subscribe(value => {
-			currentTimer = value
-		})
 	}
 
-	//Determine Percentage scored
-	$:{
-		if(question){
-			percentageScored = Math.floor(( answeredCorrect / question[0].tut_questions.length ) * 100 )
+	//The student has understood after getting the example wrong
+	const understood = () => {
+		isWrong = null
+		if(questionIndex < question[0].tut_questions.length - 1){
+			answeredQuestions += 1
+			questionIndex += 1
+			removeMarkingAlert(false)
+		}else{
+			answeredQuestions += 1
+			removeMarkingAlert(false)
+			completed = true
+		}
+
+		if(typeof window != 'undefined'){
+			window.scrollTo(0,0)
 		}
 	}
-
-	onDestroy(() => {
-    terminateTimer()
-  })
 </script>
 
 <div class={`grid place-content-center place-items-center ${error | loading ? 'h-[16rem]' : ''}`}>
@@ -313,7 +257,7 @@
 {#if question}
 	<!-- Topic -->
 	<h2 class="text-sky-600 text-2xl uppercase text-center">
-		{question[0].topic.name}
+		Revising {question[0].topic.name}
 	</h2>
 	<!-- Breadcrumb to show Grade and current topic -->
 	<nav aria-label="Breadcrumb" class="hidden sm:block">
@@ -343,16 +287,18 @@
 	  </ol>
 	</nav>
 	<!-- Learn with an example -->
-	<div class="my-2 grid place-items-center">
-		<a class="cursor-pointer hover:underline flex space-x-2 text-center text-sky-500" on:click|preventDefault={() => handleTimer()}>
-			{showExample ? 'Back to question' : 'Learn with an example'}
-			{#if showExample}
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-			{:else}
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-			{/if}
-		</a>
-	</div>
+	{#if !isWrong}
+		<div class="my-2 grid place-items-center">
+			<a class="cursor-pointer hover:underline flex space-x-2 text-center text-sky-500" on:click|preventDefault={() => handleTimer()}>
+				{showExample ? 'Back to question' : 'Check example'}
+				{#if showExample}
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+				{:else}
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+				{/if}
+			</a>
+		</div>
+	{/if}
 	<!-- Questions layout configuration -->
 	<div class={`my-4 grid ${showExample ? '' : 'md:grid-cols-4'} gap-2`}>
 		<!-- Questions and answers tab -->
@@ -367,7 +313,7 @@
 						{@html question[0].tut_questions[questionIndex].notes}
 					</div>
 				</div>
-			{:else}
+			{:else if !isWrong}
 				<!-- Show a question to the student -->
 				<h2 class="text-xl sm:text-2xl capitalize text-center uppercase underline mb-4">
 					Question
@@ -431,6 +377,21 @@
 						{/if}
 					</button>
 				{/if}
+			{:else}
+				<div class="grid place-items-center place-content-center">
+					<h2 class="text-sky-600 text-2xl sm:text-4xl mb-2">
+						Sorry, but that was incorrect!
+					</h2>
+					<div class="prose prose-lg dark:prose-invert sm:p-4">
+						{@html question[0].tut_questions[questionIndex].explanation}
+					</div>
+					<p class="text-lg text-gray-700 my-4">
+						You chose: {answerBag}
+					</p>
+					<button class="inline-block rounded border border-sky-600 bg-sky-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring mt-4" on:click={() => understood()}>
+					  Now I Understand
+					</button>
+				</div>
 			{/if}
 		</div>
 
@@ -451,28 +412,10 @@
 					<!-- Answered Questions -->
 					<div class="my-2">
 						<h2 class="text-sky-600 text-lg text-center">
-							Answered Questions
+							Questions Revised
 						</h2>
 						<p class="text-center font-black uppercase text-2xl">
 							{answeredQuestions}
-						</p>
-					</div>
-					<!-- Time lapsed -->
-					<div class="my-2">
-						<h2 class="text-sky-600 text-lg text-center">
-							Time lapsed
-						</h2>
-						<p class="text-center font-black uppercase text-2xl">
-							{formatTime(currentTimer)}
-						</p>
-					</div>
-					<!-- Score -->
-					<div class="my-2">
-						<h2 class="text-sky-600 text-lg text-center">
-							Smart Score
-						</h2>
-						<p class="text-center font-black uppercase text-2xl">
-							{percentageScored}%
 						</p>
 					</div>
 				</div>
@@ -485,10 +428,13 @@
 				Congratulations
 			</h2>
 			<p class="text-lg mt-2">
-				You have completed this module. You can check other modules to continue boosting your skills. Please take note that your performance report and recommendations will be available once you have completed an entire topic for your grade.
+				You have completed revising this module. You can check other modules to continue boosting your skills. Please take note that your performance report and recommendations will be available once you have completed assesment for topics in your grade.
 			</p>
 			<a href={topicPath} class="mt-2 block underline">
-        Back to all topics
+        Back to revision topics
+      </a>
+      <a href={topicPath} class="mt-2 block underline">
+        Take assesment
       </a>
 		</div>
 	{/if}
@@ -551,37 +497,6 @@
                 <div class="mt-2">
                   <p class="text-sm">
                   	That was correct
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{/if}
-{#if isWrong}
-	<div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity"></div>
-    <div class="fixed inset-0 z-10 overflow-y-auto">
-      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-900 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-          <div class="bg-white dark:bg-gray-900 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-            <div class="sm:flex sm:items-start">
-              <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                <!-- Heroicon name: outline/exclamation-triangle -->
-                <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
-                </svg>
-              </div>
-              <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 class="text-lg font-medium leading-6 text-red-600 uppercase" id="modal-title">
-                	Oooops, Ouch, Nooo!
-                </h3>
-                <div class="mt-2">
-                  <p class="text-sm">
-                  	You did not get that right. Make sure to check examples if you are not sure on how to solve the problem.
                   </p>
                 </div>
               </div>

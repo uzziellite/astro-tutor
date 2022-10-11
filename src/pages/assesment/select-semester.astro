@@ -1,0 +1,10 @@
+---
+import Layout from "@layouts/layout.astro"
+import LoginAlert from "@components/LoginAlert.svelte"
+import SemesterCard from "@components/SemesterCard.svelte"
+---
+
+<Layout title="Select Semester" description="Select the main semester in which you want to begin assesment from">
+	<SemesterCard client:load />
+	<LoginAlert client:load />
+</Layout>

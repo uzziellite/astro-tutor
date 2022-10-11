@@ -1,0 +1,10 @@
+---
+import Layout from "@layouts/layout.astro"
+import LoginAlert from "@components/LoginAlert.svelte"
+import SubjectDescription from "@components/SubjectDescription.svelte"
+---
+
+<Layout title="Revision Description">
+	<SubjectDescription client:load />
+	<LoginAlert client:load />
+</Layout>

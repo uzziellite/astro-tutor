@@ -101,7 +101,7 @@
 
 {#if subjects && ! loading && subjects[0]}
 	{#each subjects as {name,slug} }
-		<a href={`/assesment/select-topic?curriculum=${curriculum}&grade=${grade}&subject=${slug}`} class="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-md">
+		<a href={`/assesment/stages-description?curriculum=${curriculum}&grade=${grade}&subject=${slug}`} class="bg-gray-100 dark:bg-gray-900 rounded-xl shadow-md">
 		  <div class="flex items-start p-6">
 		    <div class="ml-4">
 		      <strong class="font-medium text-lg">

@@ -113,7 +113,7 @@
 					</span>
 				</h2>
 				{#each tut_sub_topics as {name,id}, count}
-					<a class="block mt-2 hover:underline" href={`/assesment/topical?identifier=${id}`}>
+					<a class="block mt-2 hover:underline" href={`/assesment/topical?identifier=${id}&revision=true`}>
 						{count + 1} {name}
 					</a>
 				{/each}
